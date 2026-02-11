@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 15000); // Clean up after animation
     }
 
-    // Spawn hearts periodically
-    setInterval(createHeart, 500);
+    // Spawn hearts periodically - FASTER for more hearts
+    setInterval(createHeart, 200); // Spawn every 200ms instead of 500ms
 
-    // Initial heart spawn
-    for(let i = 0; i < 15; i++) {
+    // Initial heart spawn - MORE hearts initially
+    for (let i = 0; i < 30; i++) {
         setTimeout(createHeart, Math.random() * 3000);
     }
 
@@ -32,21 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get container dimensions
         const container = document.querySelector('.buttons-container');
         const containerRect = container.getBoundingClientRect();
-        
+
         // Get button dimensions
         const btnRect = btnNo.getBoundingClientRect();
-        
+
         // Calculate new random position within visible area/container
         // We'll use fixed position or transform to move it relative to initial safely
         // But simplest for "evasion" is often absolute position within a relative container
         // OR just swapping text if movement is too tricky on mobile
-        
+
         // Let's use simple translation
         const x = (Math.random() - 0.5) * 150; // Move +/- 75px
         const y = (Math.random() - 0.5) * 150;
-        
+
         btnNo.style.transform = `translate(${x}px, ${y}px)`;
-        
+
         // Optional: Swap text sometimes
         const avoidanceTexts = ["Are you sure?", "Please?", "Don't click me!", "Missed me!", "Think again!"];
         btnNo.innerText = avoidanceTexts[Math.floor(Math.random() * avoidanceTexts.length)];
